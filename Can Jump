@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool canJump(int A[], int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int start, end, lastM, max;
+        lastM = max = 0;
+        start = 0;
+        end = A[0];
+        while(true){
+            lastM = max;
+            int j = start;
+            for(; j <= end; j++){
+                max = std::max(max, A[j] + j);
+            }
+            start = end;
+            end = max;
+            if(max >= n - 1){
+                return true;
+            }
+            if(lastM == max){
+                return false;
+            }
+        }
+    }
+};
