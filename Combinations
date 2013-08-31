@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int> > combine(int n, int k) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        vector<vector<int>> result;
+        vector<int> output;
+        getCombine(result, output, 1, n, k);
+        return result;
+    }
+    
+    void getCombine(vector<vector<int>> & result, vector<int> output, int s, int n, int k){
+        if(output.size() == k){
+            result.push_back(output);
+            return;
+        }
+        int i = s;
+        for(; i <= n; i++){
+            output.push_back(i);
+            getCombine(result, output, i+1, n, k);
+            output.pop_back();
+        }
+    }
+};
