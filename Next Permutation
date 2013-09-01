@@ -1,0 +1,35 @@
+class Solution {
+public:
+    void nextPermutation(vector<int> &num) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int len = num.size();
+        int i = len - 1;
+        int vio = -1;
+        for(; i >= 1; i--){
+            if(num[i] > num[i-1]){
+                vio = i - 1;
+                break;
+            }
+        }
+        int chn = -1;
+        if(vio != -1){
+            int j = vio + 1;
+            for(; j < len; j++){
+                if(num[vio] < num[j]){
+                    chn = j;
+                }else{
+                    break;
+                }
+            }
+            swap(num[vio], num[chn]);
+        }
+        int s = vio + 1;
+        int e = len - 1;
+        while(e > s){
+            swap(num[s], num[e]);
+            e--;
+            s++;
+        }
+    }
+};
