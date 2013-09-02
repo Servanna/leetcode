@@ -1,0 +1,69 @@
+class Solution {
+public:
+    /* Failure Attempt 1
+    int longestValidParentheses(string s) {
+        
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        vector<char> stack;
+        int len = s.size();
+        int i = 0;
+        int count = 0;
+        stack.push_back(s[i]);
+        while(i < len){
+            i++;
+            if((s[i] == ')' && stack.back() == '(')){
+                count = count + 2;
+                stack.pop_back();
+            }else{
+                stack.push_back(s[i]);
+            }          
+        }
+        return count;
+    }*/
+    
+    /* Failure Attemp 2
+    int longestValidParentheses(string s) {
+        int len = s.size();
+        int i = 0;
+        int count = 0;
+        int res = 0;
+        int f = 0;
+        while(i < len){
+            if(f > 0 && s[i] == ')'){
+                f--;
+                count = count + 2;
+                res = max(res, count);
+            }else if(f <= 0 && s[i] == ')'){
+                count = 0;
+                f = 0;
+            }else{// s[i] == '('
+                f++;
+            }
+            i++;
+        }
+        return res;
+    }
+    */
+    
+    int longestValidParentheses(string s) {
+        int res = 0;
+        int len = s.size();
+        int i = 0;
+        vector<char> stack;
+        while(i < len){
+            if(s[i] == '('){
+                stack.push_back(i);
+            }else{//')'
+                if((!stack.empty()) && s[stack.back()] == '('){
+                    stack.pop_back();
+                    res = max(res, stack.empty()?i+1:i-stack.back());
+                }else{
+                    stack.push_back(i);
+                }
+            }
+            i++;
+        }
+        return res;
+    }
+};
