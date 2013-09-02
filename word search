@@ -1,0 +1,115 @@
+class Solution {
+public:
+    /*
+    bool exist(vector<vector<char> > &board, string word) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int r = board.size();
+        int c = board[0].size();
+        int i = 0, j = 0;
+        int cur = 0;
+        for(; i < r; i ++){
+            for(; j < c ; j ++){
+                if(search(board, word, i, j, cur)) return true;
+            }
+        }
+        return false;
+
+    }
+
+    bool search(vector<vector<char> > &board, string& word, int i, int j, int cur){
+        if(cur == word.size()){
+            return true;
+        }
+        if(board[i][j] == word[cur]){
+            board[i][j] = '#';
+            if(i > 0){//up
+                if(search(board, word, i-1, j, cur + 1)) return true;
+            }
+            if(i < board.size() - 1){
+                if(search(board, word, i+1, j, cur + 1)) return true;
+            }
+            if(j > 0){
+                if(search(board, word, i, j - 1, cur + 1)) return true;
+            }
+            if(j < board[0].size() - 1){
+                if(search(board, word, i, j + 1, cur + 1)) return true;
+            }
+            board[i][j] = word[cur];
+        }
+        return false;
+
+    }
+    */
+    /*
+    bool exist(vector<vector<char> > &board, string word) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int r = board.size();
+        int c = board[0].size();
+        int i = 0, j = 0;// not working!!!
+        for(; i < r; i ++){
+            for(; j < c ; j ++){
+                if(board[i][j] == word[0]){
+                    if(search(board, word, i, j, 1)) return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    bool exist(vector<vector<char> > &board, string word) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+
+        for(int i = 0; i < board.size(); i ++){
+            for(int j = 0; j < board[0].size() ; j ++){
+                if(board[i][j] == word[0]){
+                    if(search(board, word, i, j, 1)) return true;
+                }
+            }
+        }
+        return false;
+
+    }
+    
+    */
+    
+    bool exist(vector<vector<char> > &board, string word) { 
+        // Start typing your C/C++ solution below 
+        // DO NOT write int main() function 
+        for(int i = 0; i < board.size(); ++i){ 
+            for(int j = 0; j < board[0].size(); ++j){ 
+                if(board[i][j] == word[0]){ 
+                    if(search(board, word, i, j, 1)) 
+                    return true; 
+                } 
+            } 
+        } 
+        return false; 
+    } 
+      
+    bool search(vector<vector<char> > &board, string word, int i, int j, int cur){    
+        if(cur == word.length()) return true; 
+        char ch = board[i][j]; 
+        board[i][j] = '#';
+        if(i > 0 && board[i - 1][j] == word[cur]){ 
+            if(search(board, word, i - 1, j, cur + 1)) return true; 
+        } 
+        if(j < board[0].size() - 1 && board[i][j+1] == word[cur]){ 
+            if(search(board, word, i , j+1, cur + 1)) return true;           
+        } 
+        if(i < board.size() - 1 && board[i+1][j] == word[cur]){ 
+            if(search(board, word, i + 1, j, cur + 1)) return true; 
+        }  
+        if(j > 0  && board[i][j-1] == word[cur]){  
+            if(search(board, word, i , j-1, cur + 1)) return true;           
+        }  
+        board[i][j] = ch;
+          
+        return false; 
+    } 
+};
+
+};
