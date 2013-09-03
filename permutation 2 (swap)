@@ -21,7 +21,7 @@ public:
             return;
         }
         for(int i = deep; i < num.size(); i ++){
-            if(!swap(deep, i, num)){
+            if(swap(deep, i, num)){
                 int temp = num[i];
                 num[i] = num[deep];
                 num[deep] = temp;
