@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function    ve
+        vector<vector<int> > res;
+        perm(num, res, 0);
+        return res;
+    }
+    bool noswap(int deep, int i, vector<int> &num){
+        for (int j=deep;j<i;j++){
+            if (num[j]==num[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+    void perm(vector<int> &num, vector<vector<int> > &res, int deep){
+        if(deep == num.size()){
+            res.push_back(num);
+            return;
+        }
+        for(int i = deep; i < num.size(); i ++){
+            if(!noswap(deep, i, num)){
+                int temp = num[i];
+                num[i] = num[deep];
+                num[deep] = temp;
+                perm(num, res, deep+1);
+                temp = num[i];
+                num[i] = num[deep];
+                num[deep] = temp;
+            }
+        }
+    }
+};
