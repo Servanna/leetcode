@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int> > permute(vector<int> &num) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int* v = new int[num.size()];
+        memset(v, 0, num.size()*sizeof(int));
+        vector<vector<int> > res;
+        vector<int> output;
+        permute(num, output, res, v);
+        return res;
+        
+    }
+    void permute(vector<int> &num, vector<int> &output, vector<vector<int> > &res, int* &v){
+        if(output.size() == num.size()){
+            res.push_back(output);
+            return;
+        }
+        for(int i = 0; i < num.size(); i ++){
+            if(v[i] == 0){
+                output.push_back(num[i]);
+                v[i] = 1;
+                permute(num, output, res, v);
+                output.pop_back();
+                v[i] = 0;
+            }
+        }
+    }
+};
