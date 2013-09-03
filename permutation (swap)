@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int> > permute(vector<int> &num) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        vector<vector<int> > res;
+        perm(num, res, 0);
+        return res;
+    }
+    void perm(vector<int> &num, vector<vector<int> > &res, int deep){
+        if(deep == num.size()){
+            res.push_back(num);
+            return;
+        }
+        for(int i = deep; i < num.size(); i ++){
+            int temp = num[deep];
+            num[deep] = num[i];
+            num[i] = temp;
+            
+            perm(num, res, deep+1);
+            
+            temp = num[deep];
+            num[deep] = num[i];
+            num[i] = temp;
+        }
+        
+    }
+    
+};
