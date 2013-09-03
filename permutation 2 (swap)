@@ -7,13 +7,13 @@ public:
         perm(num, res, 0);
         return res;
     }
-    bool noswap(int deep, int i, vector<int> &num){
+    bool swap(int deep, int i, vector<int> &num){
         for (int j=deep;j<i;j++){
             if (num[j]==num[i]){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
     void perm(vector<int> &num, vector<vector<int> > &res, int deep){
         if(deep == num.size()){
@@ -21,7 +21,7 @@ public:
             return;
         }
         for(int i = deep; i < num.size(); i ++){
-            if(!noswap(deep, i, num)){
+            if(!swap(deep, i, num)){
                 int temp = num[i];
                 num[i] = num[deep];
                 num[deep] = temp;
