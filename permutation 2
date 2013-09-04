@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int> > permuteUnique(vector<int> &num) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function    ve
+        vector<vector<int> > res;
+        vector<int> output;
+        int* v = new int[num.size()];
+        sort(num.begin(), num.end());
+        perm(num, output, res, v);
+        return res;
+    }
+    
+    void perm(vector<int> &num, vector<int> &output, vector<vector<int> > &res, int * &v){
+        if(output.size() == num.size()){
+            res.push_back(output);
+            return;
+        }
+        for(int i = 0; i < num.size(); i++){
+            if(v[i] == 0){
+                if(i > 0 && num[i-1] == num[i] && v[i-1] == 0) continue;
+                v[i] = 1;
+                output.push_back(num[i]);
+                perm(num, output, res, v);
+                output.pop_back();
+                v[i] = 0;
+            }
+        }
+    }
+};
