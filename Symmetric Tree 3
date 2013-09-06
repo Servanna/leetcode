@@ -1,0 +1,51 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSymmetric(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        vector<TreeNode *> row;
+        vector<TreeNode *> q;
+        int deep = 0;
+        q.push_back(root);
+        while(q.size() > 0){
+            while(q.size() > 0){
+                TreeNode * front = q.back();
+                q.pop_back();
+                if(front == NULL)
+                    continue;
+                row.push_back(front->left);
+                row.push_back(front->right);
+            }
+            int beg = 0;
+            int end = row.size()-1;
+            while(beg <= end){
+                bool flag = false;
+                if(row[beg] == NULL && row[end] == NULL){
+                    flag = true;
+                } 
+                else if(row[beg] != NULL && row[end] != NULL){
+                    if(row[beg]->val == row[end]->val){
+                        flag = true;
+                    }
+                }
+                if(!flag) return false;
+                beg++;
+                end--;
+            }
+            q.clear();
+            q.insert(q.begin(), row.begin(), row.end());
+            row.clear();
+        }
+    
+        return true;
+    }
+};
