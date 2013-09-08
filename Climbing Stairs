@@ -3,17 +3,13 @@ public:
     int climbStairs(int n) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        int* res = new int[n];
+        int res[n];
         if(n <= 2) return n;
-        else{
-            res[0] = 1;
-            res[1] = 2;
-            int i = 2;
-            for(; i < n; i++){
-                res[i] = res[i-1] + res[i-2];
-            }
-            return res[n-1];
+        res[1] = 1;
+        res[2] = 2;
+        for(int i = 3; i <= n; i++){
+            res[i] = res[i-1] + res[i-2];
         }
-        delete res;
+        return res[n];
     }
 };
