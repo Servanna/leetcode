@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int largestRectangleArea(vector<int> &h) {  
+       int L[h.size()];
+       int R[h.size()];
+       int sum = 0;
+       L[0] = 0;
+       R[h.size() - 1] = h.size() - 1;
+       for(int i = 1; i < h.size(); i++){
+           if(h[i]>h[i-1]){
+               L[i] = i;
+           }else{
+               int j = L[i-1];
+               while(j >= 0 && h[i] <= h[j]){
+                   L[i] = L[j];
+                   j = L[j]-1;
+               }
+           }
+       }
+       
+       for(int i = h.size() - 2; i >= 0; i--){
+           if(h[i]>h[i+1]){
+               R[i] = i;
+           }else{
+               int j = R[i+1];
+               while(j <= h.size() - 1 && h[i] <= h[j]){
+                   R[i] = R[j];
+                   j = R[j]+1;
+               }
+           }
+       }
+       
+       for(int i = 0; i < h.size(); i ++){
+           sum = max(sum, h[i]*(R[i] - L[i]+1));
+       }
+       return sum;
+       
+    } 
+};
+
