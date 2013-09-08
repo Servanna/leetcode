@@ -13,7 +13,7 @@ int largestRectangleArea(vector<int> &h) {
        int stack [h.size()];
        int sum = 0;
        for(int i = 0; i < h.size(); i++){
-           if(pointer == -1 || h[pointer] < h[i]){
+           if(pointer == -1 || h[stack[pointer]] < h[i]){
                 stack[++pointer] = i;
            }else{
                int t = stack[pointer--];
