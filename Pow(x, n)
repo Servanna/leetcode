@@ -3,17 +3,15 @@ public:
     double pow(double x, int n) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        double res = 1;
-        if(x = 0){
-            return 0;
-        }
-        if(n = 0){
+        if(n == 0){
             return 1;
         }
         if(n < 0){
             x = 1/x;
         }
-        for(int i = 0; i < n; i++){
+        double res = x;
+        int newn = abs(n);
+        for(int i = 1; i < newn; i++){
             res *= x;
         }
         return res;
