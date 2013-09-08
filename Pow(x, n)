@@ -11,9 +11,19 @@ public:
         }
         double res = x;
         int newn = abs(n);
-        for(int i = 1; i < newn; i++){
-            res *= x;
+        return pow1(x, newn);
+    }
+    double pow1(double x, int n){
+        if(n == 0){
+            return 1;
         }
-        return res;
+        if(n == 1){
+            return x;   
+        }
+        if(n%2 == 0){
+            return pow1(x, n/2)*pow1(x,n/2);
+        }else{
+            return pow1(x, n/2)*pow1(x, n/2)*x;
+        }
     }
 };
