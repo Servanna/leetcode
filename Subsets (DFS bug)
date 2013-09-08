@@ -14,13 +14,14 @@ public:
     void genSubsets(vector<vector<int> > & res, vector<int> &S, vector<int> &tmp, int len){
         //if(len == S.size() - 1){
         if(len == S.size()){
-            res.push_back(tmp);
+            //res.push_back(tmp);
             //tmp.clear();
             return;
         }
         for(int i = len; i < S.size(); i ++){
             tmp.push_back(S[i]);
-            genSubsets(res, S, tmp, len+1);       
+            res.push_back(tmp);
+            genSubsets(res, S, tmp, i+1);       
             tmp.pop_back();
         }
     } 
