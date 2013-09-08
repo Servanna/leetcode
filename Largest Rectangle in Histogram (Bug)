@@ -30,9 +30,9 @@ int main() {
     int n;
     vector<int> h;
 
-    h.push_back[2];
-    h.push_back[0];
-    h.push_back[2];
+    h.push_back(2);
+    h.push_back(0);
+    h.push_back(2);
     Solution s;
     clock_t t1,t2;
     t1=clock();
