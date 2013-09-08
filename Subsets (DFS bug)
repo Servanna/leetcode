@@ -7,7 +7,7 @@ public:
         int size = S.size();
         vector<vector<int> > res;
         vector<int> tmp;
-        //res.push_back(tmp);
+        res.push_back(tmp);
         genSubsets(res, S, tmp, 0);
         return res;
     }
@@ -18,8 +18,10 @@ public:
             //tmp.clear();
             return;
         }
-        tmp.push_back(S[len]);
-        genSubsets(res, S, tmp, len+1);       
-        tmp.pop_back();
+        for(int i = len; i < S.size(); i ++){
+            tmp.push_back(S[i]);
+            genSubsets(res, S, tmp, len+1);       
+            tmp.pop_back();
+        }
     } 
 };
