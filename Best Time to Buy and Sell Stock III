@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxProfit(vector<int> &prices) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int res = 0;
+        for(int i = 0; i < prices.size(); i ++){
+            res = max(res, getMax(prices, 0, i) + getMax(prices, i, prices.size()-1));
+        }
+        
+        return res;
+    }
+    int getMax(vector<int> &prices, int b, int e){
+        int minDay = b;
+        int maxProfit = 0;
+        for(int i = b; i <= e; i ++){
+            if(prices[i] < prices[minDay]){
+                minDay = i;
+            }
+            int temp = prices[i] - prices[minDay];
+            if(temp > maxProfit){
+                maxProfit = temp;
+            }
+        }
+        return maxProfit;
+    }
+};
