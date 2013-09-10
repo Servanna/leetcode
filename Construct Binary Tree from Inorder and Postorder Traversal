@@ -18,7 +18,7 @@ public:
     TreeNode *buildTree(vector<int> &inorder, int ib, int ie, vector<int> &postorder, int pb, int pe){
         if(ie < ib)
             return NULL;
-        TreeNode* r = new TreeNode();
+        TreeNode* r = new TreeNode(v);
         int v = postorder[pe];
         r->val = v;
         int rloc = findLoc(inorder, v, ib, ie);
