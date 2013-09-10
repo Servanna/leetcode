@@ -20,10 +20,9 @@ public:
             return NULL;
         TreeNode* r = new TreeNode(v);
         int v = postorder[pe];
-        r->val = v;
         int rloc = findLoc(inorder, v, ib, ie);
-        r->left = buildTree(inorder, ib, rloc-1, postorder, ie-rloc, pe-1);
-        r->right = buildTree(inorder, rloc+1, ie, postorder, pb, pb + ie - rloc -1);
+        r->left = buildTree(inorder, ib, rloc-1, postorder, pb, pb + rloc - 1 - ib);
+        r->right = buildTree(inorder, rloc+1, ie, postorder, pb + rloc - ib, pe - 1);
         return r;
     }
     int findLoc(vector<int> &inorder, int val, int beg, int end){
