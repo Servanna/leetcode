@@ -19,9 +19,9 @@ public:
         }
         if(root->right != NULL){
             if(root->next != NULL){
-                root->right = root->next->left;
+                root->right->next = root->next->left;
             }else{
-                root->right = NULL;
+                root->right->next = NULL;
             }
         }
         connect(root->left);
