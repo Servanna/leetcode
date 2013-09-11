@@ -4,14 +4,15 @@ public:
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         sort(S.begin(), S.end());
+        int flag[S.size()] = {0};
         int size = S.size();
         vector<vector<int> > res;
         vector<int> tmp;
         res.push_back(tmp);
-        genSubsets(res, S, tmp, 0);
+        genSubsets(res, S, tmp, flag, 0);
         return res;
     }
-    void genSubsets(vector<vector<int> > & res, vector<int> &S, vector<int> &tmp, int len){
+    void genSubsets(vector<vector<int> > & res, vector<int> &S, vector<int> &tmp, int *&flag, int len){
         //if(len == S.size() - 1){
         if(len == S.size()){
             //res.push_back(tmp);
@@ -19,10 +20,25 @@ public:
             return;
         }
         for(int i = len; i < S.size(); i ++){
-            tmp.push_back(S[i]);
-            res.push_back(tmp);
-            genSubsets(res, S, tmp, i+1);       
-            tmp.pop_back();
+            int tmgFlag = 1;
+            if(i > 0 && S[i] = S[i - 1]){
+                tmpFlag = 0;
+                int j = i;
+                while(j > 0 &&  S[j] == S[j-1]){
+                    if(flag[j-1] == 1){
+                        tmpFlag = 1;
+                    }
+                    j--;
+                }
+            }
+            if(tmpFlag){
+                tmp.push_back(S[i]);
+                flag[i] = 1;
+                res.push_back(tmp);
+                genSubsets(res, S, tmp, flag, i+1);       
+                tmp.pop_back();
+                flag[i] = 0;
+            }
         }
     } 
 };
