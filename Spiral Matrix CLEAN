@@ -17,21 +17,27 @@ public:
             for(i = left; i <= right; i++){
                 res.push_back(matrix[j][i]);
             }
+            i--;
+            
             if(++top > bottom) break;
 
             for(j = top; j <= bottom; j++){
                 res.push_back(matrix[j][i]);
             }
+            j--;
+            
             if(--right < left) break;
             
             for(i = right; i >= left; i--){
                 res.push_back(matrix[j][i]);
             }
+            i++;
             if(--bottom < top) break;;
             
             for(j = bottom; j >= top; j--){
                 res.push_back(matrix[j][i]);
             }
+            j++;
             if(++left > right) break;
         }
         return res;
