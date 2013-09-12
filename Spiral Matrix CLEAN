@@ -11,44 +11,28 @@ public:
         int bottom = matrix.size()-1;
         int top = 0;
         int left = 0;
-        int i = 0;
-        int j = 0;
+        int i = left;
+        int j = top;
         while(true){
-            if(left  <= right){
-                for(i = left; i <= right; i++){
-                    res.push_back(matrix[j][i]);
-                }
-                top++;
-            }else{
-                break;
+            for(i = left; i <= right; i++){
+                res.push_back(matrix[j][i]);
             }
+            if(++top > bottom) break;
+
+            for(j = top; j <= bottom; j++){
+                res.push_back(matrix[j][i]);
+            }
+            if(--right < left) break;
             
-            if(top <= bottom){
-                for(j = top; j <= bottom; j++){
-                    res.push_back(matrix[j][i]);
-                }
-                right--;
-            }else{
-                break;
+            for(i = right; i >= left; i--){
+                res.push_back(matrix[j][i]);
             }
+            if(--bottom < top) break;;
             
-            if(left <= right){
-                for(i = right; i >= left; i--){
-                    res.push_back(matrix[j][i]);
-                }
-                bottom--;
-            }else{
-                break;
+            for(j = bottom; j >= top; j--){
+                res.push_back(matrix[j][i]);
             }
-            
-            if(top <= bottom){
-                for(j = bottom; j >= top; j--){
-                    res.push_back(matrix[j][i]);
-                }
-                left++;
-            }else{
-                break;
-            }
+            if(++left > right) break;
         }
         return res;
         
