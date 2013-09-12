@@ -22,8 +22,9 @@ public:
         while(!hstop || !lstop){
             int change;
             if(hflag){
-                if(he<0 || he == h/2 || he == hi){
+                if(he == h/2 || he == hi){
                     hstop = true;
+                    hflag = !hflag;
                     continue;
                 }
                 int tmp = hi;
@@ -35,8 +36,9 @@ public:
                 he = tmp + c;
                 
             }else{
-                if(le < 0 || le == l/2 - 1 || le == li){
-                    lstop = true;
+                if(le == l/2 - 1 || le == li){
+                    lstop = true;\
+                    hflag = !hflag;
                     continue;
                 }
                 int tmp = li;
