@@ -3,17 +3,19 @@ public:
     int numDistinct(string S, string T) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        if(S.size() == 0) return 0;
+        if(T.size() == 0) return 1;
+        if(S.size() == 0 || S.size() < T.size()) return 0;
         vector<vector<int> > t(T.size(), vector<int>(S.size()));
         for(int i = 0; i < T.size(); i++){
             t[i][i] = T.substr(0, i+1).compare(S.substr(0, i+1)) == 0? 1: 0;
         }
-        for(int i = 1; i < T.size(); i ++){
-            for(int j = j+1; j < S.size(); j++){
-                t[i][j] = t[i][j-1] + (S[j] == T[j-1] ? 1: 0);
+        for(int i = 0; i < T.size(); i ++){
+            for(int j = i+1; j < S.size(); j++){
+                //t[i][j] = t[i][j-1] + (S[j] == T[j-1] ? 1: 0);
+                t[i][j] = t[i][j-1] + (S[j] == T[j-1] ? t[i-1][j-1]: 0);
             }
         }
-        return t[S.size()-1][T.size()-1];
+        return t[T.size()-1][S.size()-1];
         
     }
 };
