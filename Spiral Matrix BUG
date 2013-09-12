@@ -1,0 +1,56 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int> > &matrix) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        vector<int> res;
+        if(matrix.empty()){
+            return res;
+        }
+        int l = matrix[0].size();
+        int h = matrix.size();
+        for(int i = 0; i < l; i++){
+            res.push_back(matrix[0][i]);
+        }
+        int li = l - 1;
+        int hi = 0;
+        int le = 0;
+        int he = h - 1;
+        bool hflag = true;
+        bool hstop = false;
+        bool lstop = false;
+        while(!hstop || !lstop){
+            int change;
+            if(hflag){
+                if(he<0 || he == h/2 || he == hi){
+                    hstop = true;
+                    continue;
+                }
+                int tmp = hi;
+                int c = he - hi;
+                c = c/abs(c);
+                for(; hi <= he; hi += c){
+                    res.push_back(matrix[hi][li]);
+                }
+                he = tmp + c;
+                
+            }else{
+                if(le < 0 || le == l/2 - 1 || le == li){
+                    lstop = true;
+                    continue;
+                }
+                int tmp = li;
+                int c = le - li;
+                c = c/abs(c);
+                for(; li <= le; li += c){
+                    res.push_back(matrix[hi][li]);
+                }
+                le = li + c;
+                
+            }
+            hflag = !hflag;
+        }
+        return res;
+        
+    }
+};
