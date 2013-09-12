@@ -5,41 +5,35 @@ public:
         // DO NOT write int main() function
         bool star = false;
         const char *si, *pi;
-        for(si = s, pi = p; *pi != '\0' && *si != '\0'; pi++, si++){
-            switch(*p){
+        for(si = s, pi = p;  *si != '\0'; pi++, si++){
+            switch(*pi){
                 case '?':break;
                 case '*':
                     star = true;
-                    s = si;
-                    p = pi;
                     while(*pi == '*'){
                         pi++;
                     }
+                    if( *pi == '\0' ){
+                        return true;
+                    }
+                    s = --si;
+                    p = --pi;
                     break;
                 default:
-                    if(*s == *p){
-                        break;
-                    }else{
-                        if(!star){
+                    if(*si != *pi){           
+                        if(!star)
                             return false;
-                        }else{
-                            s++;
-                            si = s;
-                            pi = p;
-                            break;
-                        }
+                        s++;
+                        si = s;
+                        pi = p;
+                        break;   
                     }   
             }
         } 
-        if(*si != '\0'){
-            return false;
-        }
+
         while(*pi == '*'){
             pi++;
         }
-        if(*pi !='\0'){
-            return false;
-        }
-        return true;
+        return *pi == '\0';
     }
 };
