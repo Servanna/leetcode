@@ -22,24 +22,16 @@ public:
             return ret;
         }
         sort(intervals.begin(), intervals.end(), Solution::comp);
-        int start = intervals[0].start;
-        int end = intervals[0].end;
+        ret.push_back(intervals[0]);
         for(int i = 1; i < l; i++){
-            int ns = intervals[i].start;
-            int ne = intervals[i].end;
-            if(ns <= end){
-                start = min(ns, start);
-                end = max(ne, end);
+            if(intervals[i].start <= ret.back().end){
+                ret.back().start = min(intervals[i].start, ret.back().start);
+                ret.back().end = max(intervals[i].end, ret.back().end);
             }else{
-                Interval newi(start, end);
-                ret.push_back(newi);
-                start = ns;
-                end = ne;
+                ret.push_back(intervals[i]);
             }
         }
-        Interval newi(start, end);
-        ret.push_back(newi);
-        return res;
+        return ret;
     }
     
 };
