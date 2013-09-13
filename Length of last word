@@ -20,8 +20,8 @@ public:
             runner++;
         }
         if(*(runner - 1) != ' '){
-            lh = runner - 1;
+            lt = runner - 1;
         };
-        return lh - lt;
+        return lt - lh;
     }
 };
