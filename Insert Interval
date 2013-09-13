@@ -18,6 +18,7 @@ public:
             if(!flag){ //newInterval not inserted yet;
                 if(intervals[i].start > newInterval.end){
                     ret.push_back(newInterval);
+                    i--;
                     flag = true;
                 }else if(intervals[i].end < newInterval.start){
                     ret.push_back(intervals[i]);
