@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int lengthOfLastWord(const char *s) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        const char* lt = s-1;
+        const char* lh = s-1;
+        const char* r = runner;
+        if(*s == '\0'){
+            return 0;
+        }
+        runner++;
+        
+        while(*runner != '\0'){
+            if(*runner == ' ' && *(runner - 1) != ' '){
+                lt = runner - 1;
+            }else if(*runner != ' ' && *(runner - 1) == ' '){
+                lh = runner - 1;
+            }
+            runner++;
+        }
+        if(*(runner - 1) != ' '){
+            lh = runner - 1;
+        };
+        return lh - lt;
+    }
+};
