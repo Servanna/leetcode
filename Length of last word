@@ -5,7 +5,7 @@ public:
         // DO NOT write int main() function
         const char* lt = s-1;
         const char* lh = s-1;
-        const char* r = runner;
+        const char* runner = s;
         if(*s == '\0'){
             return 0;
         }
