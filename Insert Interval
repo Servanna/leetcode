@@ -23,8 +23,8 @@ public:
                 }else if(intervals[i].end < newInterval.start){
                     ret.push_back(intervals[i]);
                 }else{
-                    newInterval.start = min(newInterval.start, intervals[0].start);
-                    newInterval.end = max(newInterval.end, intervals[0].end);
+                    newInterval.start = min(newInterval.start, intervals[i].start);
+                    newInterval.end = max(newInterval.end, intervals[i].end);
                 }
             }else{//newInterval aleady inserted
                 ret.push_back(intervals[i]);
