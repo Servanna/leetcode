@@ -32,13 +32,13 @@ public:
                 end = max(ne, end);
             }else{
                 Interval newi(start, end);
-                res.push_back(newi);
+                ret.push_back(newi);
                 start = ns;
                 end = ne;
             }
         }
         Interval newi(start, end);
-        res.push_back(newi);
+        ret.push_back(newi);
         return res;
     }
     
