@@ -10,7 +10,7 @@
 class Solution {
 public:
 
-    bool comp(Interval a, Interval b){
+    static bool comp(Interval a, Interval b){
         return a.start <= b.start;
     }
     vector<Interval> merge(vector<Interval> &intervals) {
@@ -21,7 +21,7 @@ public:
         if(l == 0){
             return ret;
         }
-        sort(intervals.begin(), intervals.end(), comp);
+        sort(intervals.begin(), intervals.end(), Solution::comp);
         int start = intervals[0].start;
         int end = intervals[0].end;
         for(int i = 1; i < l; i++){
