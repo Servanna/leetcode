@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int sqrt(int x) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int start = 0;
+        int end = x/2;
+        while(start <= end){
+            int tmp = (start + end)/2;
+            int tmp1 = tmp*tmp;
+            if(tmp1 > x){
+                end--;
+            }else if(tmp1 < x){
+                start++;
+            }else{
+                return tmp;
+            }
+        }
+        return (start+end)/2;
+    }
+};
