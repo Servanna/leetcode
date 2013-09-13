@@ -4,7 +4,8 @@ public:
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         int start = 0;
-        int end = x/2;
+        int end = x/2 + 1;
+        end= x/2<std::sqrt(INT_MAX)? x/2+1:std::sqrt(INT_MAX);  
         while(start <= end)({
             int mid = (start + end)/2;
             int sqr = mid*mid;
@@ -20,3 +21,5 @@ public:
         
     }
 };
+
+// Refer from http://fisherlei.blogspot.com/search?q=sqrt
