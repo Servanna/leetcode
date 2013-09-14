@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {      
+     // Start typing your C/C++ solution below  
+     // DO NOT write int main() function  
+        vector<int> res(rowIndex + 2);
+        res[1] = 1;
+        for(int i = 0; i < rowIndex ; i++){
+            for(int j = rowIndex+1; j > 0; j --){
+                res[j] = res[j-1] + res[j];
+            }
+        }
+        res.erase(res.begin());
+        return res;
+    }
+};
