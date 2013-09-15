@@ -5,7 +5,8 @@ public:
         // DO NOT write int main() function
         vector<string> res;
         vector<string> cur;
-        restore(res, s, cur, 0);
+        if(s.size() >= 4 && s.size() <= 16)
+            restore(res, s, cur, 0);
         return res;
     }
     void restore(vector<string>& res, string s, vector<string>& cur, int i){
