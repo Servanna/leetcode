@@ -21,10 +21,12 @@ public:
         for(int l = 1; l <= 3; l++){
             if(i + l <= s.size()){
                 string sub = s.substr(i, l);
-                if(atoi(sub.c_str()) < 256){
-                    cur.push_back(sub);
-                    restore(res, s, cur, i + l);
-                    cur.pop_back();
+                if(sub.size() == 1 || sub[0] != '0'){
+                    if(atoi(sub.c_str()) < 256){
+                        cur.push_back(sub);
+                        restore(res, s, cur, i + l);
+                        cur.pop_back();
+                    }
                 }
             }
         }
