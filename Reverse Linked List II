@@ -29,9 +29,9 @@ public:
             post = tmp;
             c--;
         }
-        //ListNode * tmp = pre->next;
+        ListNode * tmp = pre->next;
         pre->next = cur;
-        //tmp->next = post;
+        tmp->next = post;
         head = h->next;
         delete h;
         return head;
