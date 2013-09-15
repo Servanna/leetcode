@@ -15,21 +15,23 @@ public:
         h->next = head;
         ListNode *pre = h;
         ListNode *cur = head;
+        
         for(int i = 1; i < m; i ++){
             pre = cur;
             cur = cur->next;
         }
         int c = n - m;
+        ListNode *post = cur->next;
         while(c > 0){
-            pre->next = cur->next;
-            ListNode *tmp = pre->next->next;
-            pre->next->next = cur;
-            cur->next = tmp;
-            
-            pre = pre->next;
-            cur = pre->next;
+            ListNode* tmp = post->next;
+            post->next = cur;
+            cur = post;
+            post = tmp;
             c--;
         }
+        //ListNode * tmp = pre->next;
+        pre->next = cur;
+        //tmp->next = post;
         head = h->next;
         delete h;
         return head;
