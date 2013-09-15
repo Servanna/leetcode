@@ -5,9 +5,13 @@ public:
         // DO NOT write int main() function
         char* n;
         char* h;
+        char* oh = haystack;
         char* head = haystack;
         n = needle;
-        while(h && *h != '\0'){
+        h = head;
+        int lenh = strlen(haystack);
+        int lenn = strlen(needle);
+        while(h < oh + lenh - lenn + 1){
             while(h && n && *n == *h && *n != '\0'){
                 n++;
                 h++;
