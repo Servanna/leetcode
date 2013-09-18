@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int totalNQueens(int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        //vector<vector<string> > ret;
+        int ret;
+        vector<string> board;
+        initBoard(board, n);
+        solve(ret, board, n, 0);
+        return ret;
+    }
+    void solve(int & ret, vector<string>& board, int n, int k){
+        if(k == n){
+            ret++;
+            return;
+        }
+        for(int i = 0; i < n; i++){
+            if(isValid(board, n, k, i)){
+                board[k][i] = 'Q';
+                solve(ret, board, n, k+1);
+                board[k][i] = '.';
+            }
+        }
+    }
+    void initBoard(vector<string> & board, int n){
+        for(int i = 0; i < n; i++){
+            string row = "";
+            for(int j = 0; j < n; j++){
+                row += ".";
+            }
+            board.push_back(row);
+        }
+    }
+    bool isValid(vector<string>& board, int n, int row, int col){
+        for(int i = 0; i < row; i++){
+            if(board[i][col] == 'Q')
+                return false;
+            int offset = row - i;
+            int j_left = col - offset;
+            if(j_left >= 0 && board[i][j_left] == 'Q')
+                return false;
+            int j_right = col + offset;
+            if(j_right <= n-1 && board[i][j_right] == 'Q')
+                return false;
+        }
+        return true;
+    }
+};
