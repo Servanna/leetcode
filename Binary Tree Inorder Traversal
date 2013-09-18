@@ -1,4 +1,3 @@
-
     /** 
      * Definition for binary tree 
      * struct TreeNode { 
@@ -26,10 +25,6 @@
             int f=0;  
             nodes.push(root);  
             while (nodes.size()!=0) {  
-                if(f==1) {  
-                    temp=pre->right;  
-                    f=0;  
-                }  
                 while (temp->left != NULL) {  
                     nodes.push(temp->left);  
                     temp=temp->left;  
@@ -37,11 +32,8 @@
                 TreeNode *temp=nodes.top();  
                 nodes.pop();  
                 res.push_back(temp->val);  
-                i++;  
                 if (temp->right!=NULL) {  
                     nodes.push(temp->right);  
-                    pre=temp;  
-                    f=1;  
                     temp=temp->right;  
                 }  
             }  
