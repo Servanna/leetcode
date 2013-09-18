@@ -39,7 +39,7 @@ public:
             int j_left = col - offset;
             if(j_left >= 0 && board[i][j_left] == 'Q')
                 return false;
-            int j_right = i + offset;
+            int j_right = col + offset;
             if(j_right <= n-1 && board[i][j_right] == 'Q')
                 return false;
         }
