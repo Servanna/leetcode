@@ -9,7 +9,9 @@ public:
         while(x != 0){
             d = x%10;
             x = x/10;
-            ret += ret*10 + d;
+            //ret += ret*10 + d;
+            ret = ret*10;
+            ret += d;
         }
         return ret;
     }
