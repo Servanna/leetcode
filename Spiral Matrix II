@@ -22,7 +22,7 @@ public:
             for(int i = n-offset-1; i >= offset+1; i--){
                 ret[i][offset] = c++;
             }
-            c--;
+            //c--;
         }
         return ret;
     }
