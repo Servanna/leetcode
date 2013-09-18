@@ -10,7 +10,7 @@ public:
             digits[i] = tmp%10;
             carry = tmp > 9 ? 1: 0; 
         }
-        if(carry > 1){
+        if(carry > 0){
             digits.insert(digits.begin(), carry);
         }
         return digits;
