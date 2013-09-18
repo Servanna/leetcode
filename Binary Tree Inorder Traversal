@@ -14,28 +14,20 @@
             // DO NOT write int main() function  
               
             stack<TreeNode *> nodes;  
-            int i=0;  
             vector<int> res;  
             if (!root) {  
                 return res;  
             }  
-              
             TreeNode *temp=root;   
             TreeNode *pre=NULL;  
-            int f=0;  
-            nodes.push(root);  
             while (nodes.size()!=0) {  
-                while (temp->left != NULL) {  
-                    nodes.push(temp->left);  
+                while (temp != NULL) {  
+                    nodes.push(temp);  
                     temp=temp->left;  
                 }  
                 TreeNode *temp=nodes.top();  
                 nodes.pop();  
                 res.push_back(temp->val);  
-                if (temp->right!=NULL) {  
-                    nodes.push(temp->right);  
-                    
-                }  
                 temp=temp->right;  
             }  
             return res;  
