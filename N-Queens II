@@ -4,7 +4,7 @@ public:
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         //vector<vector<string> > ret;
-        int ret;
+        int ret = 0;
         int *board = new int[n];
         solve(ret, board, n, 0);
         return ret;
