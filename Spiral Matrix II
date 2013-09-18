@@ -15,11 +15,11 @@ public:
                 ret[i][n-offset-1] = c++;
             }
             c--;
-            for(int j = n-offset-1; j >= 0; j--){
+            for(int j = n-offset-1; j >= offset; j--){
                 ret[n - offset-1][j] = c++;
             }
             c--;
-            for(int i = n-offset-1; i >= 0; i--){
+            for(int i = n-offset-1; i >= offset+1; i--){
                 ret[i][offset] = c++;
             }
             c--;
