@@ -4,11 +4,11 @@ public:
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         int n1 = 0;
-        for(int i = num1.size()-1; i >=0; i-- ){
+        for(int i = 0; i < num1.size(); i++ ){
             n1 = n1*10 + num1[i]-'0';
         }
         int n2 = 0;
-        for(int i = num2.size()-1; i>=0; i-- ){
+        for(int i = 0; i < num2.size(); i++ ){
             n2 = n2*10 + num2[i]-'0';
         }
         int n3 = n1*n2;
@@ -20,5 +20,6 @@ public:
             ret = c + ret;
         }
         return ret.size()==0?"0":ret;
+        
     }
 };
