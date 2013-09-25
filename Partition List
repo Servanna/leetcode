@@ -25,8 +25,12 @@ public:
             }
             head = head->next;
         }
-        head = hh1->next;
-        *ht1 = hh2->next;
+        if(hh1->next != NULL){
+            head = hh1->next;
+            *ht1 = hh2->next;
+        }else{
+            head = hh2->next;
+        }
         *ht2 = NULL;
         return head;
     }
