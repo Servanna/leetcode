@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int n1 = 0;
+        for(int i = num1.size()-1; i >=0; i-- ){
+            n1 = n1*10 + num1[i]-'0';
+        }
+        int n2 = 0;
+        for(int i = num2.size()-1; i>=0; i-- ){
+            n2 = n2*10 + num2[i]-'0';
+        }
+        int n3 = n1*n2;
+        string ret = "";
+        while(n3 != 0){
+            int t = n3%10;
+            char c = t + '0';
+            n3 = n3/10;
+            ret = c + ret;
+        }
+        return ret;
+    }
+};
