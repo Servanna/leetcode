@@ -36,12 +36,14 @@ public:
             char dc = d%10 + '0';
             overfl = d/10;
             ret = dc + ret;
+            i1--;
         }
         while(i2 >= 0){
             int d = n2[i2] - '0' + overfl;
             char dc = d%10 + '0';
             overfl = d/10;
             ret = dc + ret;
+            i2--;
         }
         if(overfl > 0)
             ret = '1' + ret;
