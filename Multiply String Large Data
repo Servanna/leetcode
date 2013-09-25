@@ -10,7 +10,7 @@ public:
         int i = 0;
         for(int i = num2.size()-1; i >= 0; i--){
             string cur = mul(num1, num2[i]);
-            for(int j = 0; j < i; j++){
+            for(int j = 0; j < num2.size()-1 - i; j++){
                 cur = cur + "0";
             }
             ret = add(ret, cur);
