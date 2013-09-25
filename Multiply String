@@ -19,6 +19,6 @@ public:
             n3 = n3/10;
             ret = c + ret;
         }
-        return ret;
+        return ret.size()==0?"0":ret;
     }
 };
