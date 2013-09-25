@@ -15,6 +15,7 @@ public:
         vector<TreeNode*> nodes;
         vector<int> l;
         inorder(nodes, l, root);
+        sort(l.begin(), l.end());
         for(int i = 0; i < nodes.size(); i++){
             nodes[i]->val = l[i];  
         }
