@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function    
+        vector<vector<bool> > Match(s1.size()+1, vector<bool>(s2.size()+1));
+        Match[0][0] = true;
+        for(int i = 1; i < s1.size() + 1; i++){
+            if(s3.subStr(0, i).compare(s1.subStr(0, i)) == 0)
+                Match[i][0] = true;
+            else
+                Match[i][0] = false;
+        }
+        
+    }
+};
