@@ -7,6 +7,11 @@ public:
             return false;
         if(s1 == s2)
             return true;
+        string ts1 = s1;
+        string ts2 = s2;
+        sort(ts1.begin(), ts1.end());
+        sort(ts2.begin(), ts2.end());
+        if(ts1 != ts2) return false;
         for(int i = 1; i < s1.size(); i++){
             string s11 = s1.substr(0, i);
             string s12 = s1.substr(i, s1.size()-i);
