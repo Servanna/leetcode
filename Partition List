@@ -16,7 +16,6 @@ public:
         ListNode **ht1 = &hh1->next;
         ListNode **ht2 = &hh2->next;
         while(head){
-            //ListNode* tmp = head->next;
             if(head->val < x){
                 *ht1 = head;
                 ht1 = &(head->next);
@@ -28,6 +27,7 @@ public:
         }
         head = hh1->next;
         *ht1 = hh2->next;
+        *ht2 = NULL;
         return head;
     }
 };
