@@ -7,15 +7,20 @@ public:
             return false;
         if(s1 == s2)
             return true;
-        bool ret = false;
         for(int i = 1; i < s1.size(); i++){
             string s11 = s1.substr(0, i);
             string s12 = s1.substr(i, s1.size()-i);
-            string s21 = s2.substr(0, i);
-            string s22 = s2.substr(i, s2.size()-i);
-            ret = ret || (isScramble(s11, s21) && isScramble(s12,s21));
+            {// try forward
+                string s21 = s2.substr(0, i);
+                string s22 = s2.substr(i, s2.size()-i);
+                if(isScramble(s11, s21) && isScramble(s12,s22)) return true;
+            }
+            {// try backward
+                string s21 = s2.substr(0, s2.size()-i);
+                string s22 = s2.substr(s2.size()-i, i);
+                if(isScramble(s11, s22) && isScramble(s12,s21)) return true;
+            }
         }
-        return ret;
-
+        return false;
     }
 };
