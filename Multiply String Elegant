@@ -1,0 +1,23 @@
+class Solution {
+public:
+   string multiply(string num1, string num2) {
+       // Start typing your C/C++ solution below
+       // DO NOT write int main() function
+       int len1 = num1.size();
+       int len2 = num2.size();
+       string ret(len1 + len2, '0');
+       int carry = 0;
+       int tmp;
+       int cur = len1+len2-1;
+       for(int i = len1-1; i >= 0; i--){
+           for(int j = len2-1; j >= 0; j--){
+               tmp = (num1[i]-'0')*(num2[j]-'0') + carry;
+               carry = tmp/10;
+               int d = tmp%10;
+               ret[cur--] = d + '0';
+           }
+       }
+       ret[cur] = carry + '0';
+       return ret[0]=='0'?ret.substr(1, len1+len2-1):ret;
+   }
+};
