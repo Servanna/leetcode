@@ -22,9 +22,9 @@ public:
             return;
         find(root->left, p1, p2, pre);
         if(pre && root->val < pre->val){
-            p1 = pre;
+            p1 = root;
             if(!p2)
-                p2 = root;
+                p2 = pre;
         }
         pre = root;
         find(root->right, p1, p2, pre);
