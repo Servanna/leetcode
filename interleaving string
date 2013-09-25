@@ -4,6 +4,8 @@ public:
         // Start typing your C/C++ solution below
         // DO NOT write int main() function    
         vector<vector<bool> > Match(s1.size()+1, vector<bool>(s2.size()+1));
+        if(s1.size() + s2.size() != s3.size())
+            return false;
         Match[0][0] = true;
         for(int i = 1; i < s1.size() + 1; i++){
             Match[i][0] = Match[i-1][0] && (s3[i-1]==s1[i-1]);
