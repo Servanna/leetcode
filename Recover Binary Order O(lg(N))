@@ -17,7 +17,7 @@ public:
         p1->val = p2->val;
         p2->val = tmp;
     }
-    void find(TreeNode* root, TreeNode * p1, TreeNode* p2, TreeNode* pre){
+    void find(TreeNode* &root, TreeNode * &p1, TreeNode* &p2, TreeNode* &pre){
         if(root == NULL)
             return;
         find(root->left, p1, p2, pre);
