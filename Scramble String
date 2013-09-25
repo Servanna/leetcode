@@ -5,14 +5,19 @@ public:
         // DO NOT write int main() function
         if(s1.size() != s2.size())
             return false;
+        if(s1.size() == 1)
+            return s1 == s2;
         if(s1 == s2)
             return true;
+        bool ret = false;
         for(int i = 1; i < s1.size(); i++){
             string s11 = s1.substr(0, i);
             string s12 = s1.substr(i, s1.size()-i);
             string s21 = s2.substr(0, i);
             string s22 = s2.substr(i, s2.size()-i);
-            return (isScramble(s11, s21) && isScramble(s22,s21));
+            ret = ret || (isScramble(s11, s21) && isScramble(s22,s21));
         }
+        return ret;
+
     }
 };
