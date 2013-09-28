@@ -12,10 +12,8 @@ public:
             }
         }
         vector<string> ret;
-        if(map.size() != 0)
-            for (unordered_set<string>::iterator itr = map.begin(); itr != map.end(); ++itr) {
-                ret.push_back(*itr);
-            }
-        return ret;
+        for (unordered_set<string>::iterator itr = map.begin(); itr != map.end(); ++itr) {
+            ret.push_back(*itr);
+        }
     }
 };
