@@ -21,7 +21,8 @@ public:
             }
             --i;
             char cc = count + '0';
-            ret += cc + cur;
+            ret += cc;
+            ret += cur;
         }
         return ret;
     }
