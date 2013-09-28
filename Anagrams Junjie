@@ -12,14 +12,14 @@ public:
                 tmp.push_back(strs[i]);
                 map.insert(pair<string, vector<string> >(s, tmp));
             }else{
-                map[string].second.push_back(strs[i]);
+                map[s].push_back(strs[i]);
             }
         }
-        unordered_set<string>::iterator itr;
+        unordered_map<string, vector<string>>::iterator itr;
         vector<string> ret;
         for (itr = map.begin(); itr != map.end(); ++itr) {
             if(itr->second.size() > 1)
-                ret.push_back(*itr);
+                ret.push_back(itr->first);
         }
         return ret;
     }
