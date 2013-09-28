@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<string> anagrams(vector<string> &strs) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        unordered_set<string> map;
+        for(int i = 0; i < strs.size(); i ++){
+            string s = strs[i];
+            std::sort(s.begin(), s.end());
+            if(map.count(s) == 0){
+                map.insert(strs[i]);
+            }
+        }
+        vector<string> ret;
+        if(map.size() != 0)
+            for (unordered_set<string>::iterator itr = map.begin(); itr != map.end(); ++itr) {
+                ret.push_back(*itr);
+            }
+        return ret;
+    }
+};
