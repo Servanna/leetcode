@@ -35,7 +35,7 @@ public:
                     L[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
                 }
             }
-            for(int j = cols-2; j >=0; j++){
+            for(int j = cols-2; j >=0; j--){
                 if(height[i][j] > height[i][j+1])
                     R[j] = j;
                 else{
