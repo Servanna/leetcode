@@ -10,14 +10,14 @@ public:
         int maxR = 0;
         vector<vector<int> > hm(h, vector<int>(w, 0));
         for(int i = 0; i < h; i++){
-            if(hm[i][0] == '1')
+            if(matrix[i][0] == '1')
                 hm[i][0] = 1;
             else
                 hm[i][0] = 0;
         }
         for(int i = 0; i < h; i++){
             for(int j = 1; j < w; j++){
-                if(hm[i][j] == '1')
+                if(matrix[i][j] == '1')
                     hm[i][j] = hm[i][j-1]+1;
                 else
                     hm[i][j] = 0;
