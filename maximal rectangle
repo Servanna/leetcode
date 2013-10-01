@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int maximalRectangle(vector<vector<char> > &matrix) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(matrix.size() == 0 || matrix[0].size() == 0)
+            return 0;
+        int h = matrix.size();
+        int w = matrix[0].size();
+        int maxR = 0;
+        vector<vector<int> > hm(h, vector<int>(w, 0));
+        for(int i = 0; i < h; i++){
+            if(hm[i][0] == '1')
+                hm[i][0] = 1;
+            else
+                hm[i][0] = 0;
+        }
+        for(int i = 0; i < h; i++){
+            for(int j = 1; j < w; j++){
+                if(hm[i][j] == '1')
+                    hm[i][j] = hm[i][j-1]+1;
+                else
+                    hm[i][j] = 0;
+            }
+        }
+        for(int i = 0; i < h; i++){
+            for(int j = 0; j < w; j++){
+                int tmpMax = hm[i][j];
+                int minW = hm[i][j];
+                for(int k = i; k >= 0; k--){
+                    if(hm[k][j] == 0) break;
+                    if(hm[k][j] < minW) minW = hm[k][j];
+                    if(hm[k][j]*minW > tmpMax) tmpMax = hm[k][j]*minW;
+                }
+                if(maxR < tmpMax) maxR = tmpMax;
+            }
+        }
+        return maxR;
+    }
+};
