@@ -30,7 +30,7 @@ public:
                 for(int k = i; k >= 0; k--){
                     if(hm[k][j] == 0) break;
                     if(hm[k][j] < minW) minW = hm[k][j];
-                    if(hm[k][j]*(i-k+1) > tmpMax) tmpMax = hm[k][j]*(i-k+1);
+                    if(minW*(i-k+1) > tmpMax) tmpMax = minW*(i-k+1);
                 }
                 if(maxR < tmpMax) maxR = tmpMax;
             }
