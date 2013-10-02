@@ -14,8 +14,8 @@ public:
                 height[i][j] = matrix[i][j] == '1' ? height[i-1][j] + 1 : 0;
             }
         }
-        int L[cols];
-        int R[rows];
+        int *L = new int[cols];
+        int *R = new int[cols];
         int maxR = 0;
         for(int i = 0; i < rows; i++){
             L[0] = 0;
@@ -25,10 +25,11 @@ public:
                     L[j] = j;
                 else{
                     int tmpj = L[j-1];
-                    while(height[i][j] >= height[i][tmpj] && tmpj != 0){
-                        tmpj = L[tmpj-1];
+                    while(height[i][j] >= height[i][tmpj] && tmpj >= 0){
+                        L[j] = L[tmpj];
+                        tmpj = L[j] - 1;
                     }
-                    L[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
+                    //L[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
                 }
             }
             for(int j = cols-2; j >=0; j--){
@@ -36,10 +37,11 @@ public:
                     R[j] = j;
                 else{
                     int tmpj = R[j+1];
-                    while(height[i][j] >= height[i][tmpj] && tmpj != cols-1){
-                        tmpj = R[tmpj-1];
+                    while(height[i][j] >= height[i][tmpj] && tmpj <= cols-1){
+                        R[j] = R[tmpj];
+                        tmpj = R[j] + 1;
                     }
-                    R[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
+                    //R[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
                 }
             }
             
@@ -48,5 +50,5 @@ public:
             }
         }
         return maxR;
-    }
+    }    
 };
