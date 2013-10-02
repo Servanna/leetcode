@@ -26,11 +26,11 @@ public:
                 else{
                     int tmpj = L[j-1];
                     while(height[i][j] <= height[i][tmpj] && tmpj >= 0){
-                        L[j] = tmpj;
+                        L[j] = L[tmpj];
                         tmpj = L[tmpj] - 1;
                     }
                     //L[j] = tmpj < 0 ? 0: tmpj;
-                    if(tmpj < 0 && height[i][j] <= height[i][tmpj]) L[j] = 0;
+                    //if(tmpj < 0 && height[i][j] <= height[i][tmpj]) L[j] = 0;
                     
                 }
             }
@@ -40,11 +40,11 @@ public:
                 else{
                     int tmpj = R[j+1];
                     while(height[i][j] <= height[i][tmpj] && tmpj <= cols-1){
-                        R[j] = tmpj;
+                        R[j] = R[tmpj];
                         tmpj = R[tmpj] + 1;
                     }
                     //R[j] = tmpj > cols-1? cols-1:tmpj;
-                    if(tmpj > cols-1 && height[i][j] <= height[i][tmpj]) R[j] = cols-1;
+                    //if(tmpj > cols-1 && height[i][j] <= height[i][tmpj]) R[j] = cols-1;
                 }
             }
             
