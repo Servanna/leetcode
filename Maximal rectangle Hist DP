@@ -29,7 +29,8 @@ public:
                         L[j] = tmpj;
                         tmpj = L[tmpj] - 1;
                     }
-                    L[j] = tmpj < 0 ? 0: tmpj;
+                    //L[j] = tmpj < 0 ? 0: tmpj;
+                    if(tmpj == 0) L[j] = 0;
                     
                 }
             }
@@ -42,7 +43,8 @@ public:
                         R[j] = tmpj;
                         tmpj = R[tmpj] + 1;
                     }
-                    R[j] = tmpj > cols-1? cols-1:tmpj;
+                    //R[j] = tmpj > cols-1? cols-1:tmpj;
+                    if(tmpj == cols-1) R[j] = cols-1;
                 }
             }
             
