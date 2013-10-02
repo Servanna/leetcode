@@ -24,28 +24,27 @@ public:
                 if(height[i][j] > height[i][j-1])
                     L[j] = j;
                 else{
-                    int tmpj = L[j-1];
-                    while(height[i][j] >= height[i][tmpj] && tmpj >= 0){
-                        L[j] = L[tmpj];
-                        tmpj = L[j] - 1;
+                    int tmpj = L[j-1] - 1;
+                    while(height[i][j] <= height[i][tmpj] && tmpj >= 0){
+                        tmpj = L[tmpj] - 1;
                     }
-                    //L[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
+                    L[j] = tmpj < 0 ? 0: tmpj;
+                    
                 }
             }
             for(int j = cols-2; j >=0; j--){
                 if(height[i][j] > height[i][j+1])
                     R[j] = j;
                 else{
-                    int tmpj = R[j+1];
-                    while(height[i][j] >= height[i][tmpj] && tmpj <= cols-1){
-                        R[j] = R[tmpj];
-                        tmpj = R[j] + 1;
+                    int tmpj = R[j+1] + 1;
+                    while(height[i][j] <= height[i][tmpj] && tmpj <= cols-1){
+                        tmpj = R[tmpj] + 1;
                     }
-                    //R[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
+                    R[j] = tmpj > cols-1? cols-1:tmpj;
                 }
             }
             
-            for(int j = 0; j < cols-1; j++){
+            for(int j = 0; j < cols; j++){
                 maxR = max(maxR, (R[j] - L[j] + 1)*height[i][j]);
             }
         }
