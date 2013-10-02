@@ -30,7 +30,7 @@ public:
                 else{
                     int tmpj = L[j-1];
                     while(height[i][j] >= height[i][tmpj] && tmpj != 0){
-                        tmpj = L[tmpj];
+                        tmpj = L[tmpj-1];
                     }
                     L[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
                 }
@@ -41,7 +41,7 @@ public:
                 else{
                     int tmpj = R[j+1];
                     while(height[i][j] >= height[i][tmpj] && tmpj != cols-1){
-                        tmpj = R[tmpj];
+                        tmpj = R[tmpj-1];
                     }
                     R[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
                 }
