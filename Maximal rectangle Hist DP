@@ -1,9 +1,5 @@
 class Solution {
 public:
-    struct hist{
-        int x;
-        int h;
-    };
     int maximalRectangle(vector<vector<char> > &matrix) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
@@ -18,8 +14,8 @@ public:
                 height[i][j] = matrix[i][j] == '1' ? height[i-1][j] + 1 : 0;
             }
         }
-        int *L = new int[cols];
-        int *R = new int[rows];
+        int L[cols];
+        int R[rows];
         int maxR = 0;
         for(int i = 0; i < rows; i++){
             L[0] = 0;
@@ -30,7 +26,7 @@ public:
                 else{
                     int tmpj = L[j-1];
                     while(height[i][j] >= height[i][tmpj] && tmpj != 0){
-                        tmpj = L[tmpj];
+                        tmpj = L[tmpj-1];
                     }
                     L[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
                 }
@@ -41,7 +37,7 @@ public:
                 else{
                     int tmpj = R[j+1];
                     while(height[i][j] >= height[i][tmpj] && tmpj != cols-1){
-                        tmpj = R[tmpj];
+                        tmpj = R[tmpj-1];
                     }
                     R[j] = height[i][j] >= height[i][tmpj] ? tmpj : tmpj + 1;
                 }
