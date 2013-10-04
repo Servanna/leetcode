@@ -16,7 +16,7 @@ public:
                 res[i-1] = res[i] + 1;
         }
         for(int i = 0; i < ratings.size(); i++){
-            sum += ratings[i];
+            sum += res[i];
         }
         return sum;
     }
