@@ -1,19 +1,9 @@
-#include <iostream>
-#include <fstream>
-#include <tr1/unordered_map>
-#include <tr1/unordered_set>
-#include <cstdio>
-#include <time.h>
-#include <string>
-#include <set>
-
-using namespace std;
 class Solution {
 public:
     int candy(vector<int> &ratings) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
         int sum = 0;
-        tr1::unordered_map<int, vector<int> > m;
+        unordered_map<int, vector<int> > m;
         set<int> s;
         int* res = new int[ratings.size()];
         for(int i = 0; i < ratings.size(); i++){
@@ -41,7 +31,7 @@ public:
                 }
                 pos = tmp;
                 //increase right
-                while(pos+1<= ratings.size()-1&& ratings[pos+1] > ratings[pos] && res[pos-1] <= res[pos]){
+                while(pos+1<= ratings.size()-1&& ratings[pos+1] > ratings[pos] && res[pos+1] <= res[pos]){
                     res[pos+1] = res[pos]+1;
                     pos++;
                 }
@@ -49,30 +39,7 @@ public:
         }
         for(int i = 0; i < ratings.size(); i++){
             sum += res[i];
-            cout << res[i] << ", " << endl;
         }
         return sum;
     }
 };
-int main(int argc, char *argv[]) {
-    ifstream in;
-    in.open(argv[1]);
-    Solution s;
-    time_t t1 = clock();
-    string line;
-    vector<int> input;
-    while(getline(in, line)){
-        std::stringstream  linestream(line);
-        int val;
-        char tmp;
-        while(linestream >> val){
-            input.push_back(val);
-            linestream >> tmp;
-        }
-    }
-    int res = s.candy(input);
-    time_t t3 = clock();
-    cout << "res:" << res << endl;
-    //cout << "t2:" << t3 - t2 << endl;
-}
-
