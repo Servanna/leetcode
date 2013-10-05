@@ -1,0 +1,103 @@
+#include <iostream>
+#include <fstream>
+#include <tr1/unordered_map>
+#include <tr1/unordered_set>
+#include <cstdio>
+#include <time.h>
+#include <string>
+#include <set>
+#include <vector>
+#include <sstream>
+#include <iomanip>
+
+using namespace std;
+class Solution {
+public:
+    void solve(vector<vector<char> > &board) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        if(board.size() <= 2 || board[0].size() <= 2) return;
+        printBoard(board);
+        for(int i = 0; i < board.size(); i++){
+            for(int j = 0; j < board[0].size(); j++){
+                if(board[i][j] == 'O'){
+                    bool c = true;
+                    check(i, j, board, c);
+                    if(c){
+                        print(i, j, board, 'X');
+                    }else{
+                        print(i, j, board, 'N');
+                    }
+                    //printBoard(board);
+                }
+            }
+        }
+        setBoard(board);
+        printBoard(board);
+    }
+    void check(int i, int j, vector<vector<char> > &board, bool &c){
+        if( i < board.size() && j < board[0].size()  && board[i][j] == 'O'){
+            if(i == board.size() - 1 || j == board[0].size() -1 || i == 0 || j == 0){
+                    c = false;
+                    cout << "set c false [" << i << "," << j << "]"<< endl;
+                    return;
+                }else{
+                    check(i+1, j, board, c);
+                    if (c == false) {
+                        return;
+                    }
+                    check(i, j+1, board, c);
+                }
+        }
+       
+    }
+    void printBoard(vector<vector<char> > &board){
+        for(int i = 0; i < board.size(); i++){
+            for(int j = 0; j < board[0].size(); j++){
+                cout << setw(2) << board[i][j];
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+    void print(int i, int j, vector<vector<char> > &board, char c){
+        if(i < board.size() - 1 && j < board[0].size() - 1  && board[i][j] == 'O'){
+            board[i][j] = c;
+            print(i+1, j, board, c);
+            print(i, j+1, board, c);
+        }
+    }
+    void setBoard(vector<vector<char> > &board){
+        for(int i = 0; i < board.size(); i++){
+            for (int j = 0; j < board[i].size(); j++) {
+                if (board[i][j] == 'N') {
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
+};int main(int argc, char *argv[]) {
+    ifstream in;
+    in.open(argv[1]);
+    Solution s;
+    string line;
+    vector<vector<char> > board;
+    while(getline(in, line, '\r')){
+        std::stringstream  linestream(line);
+        vector<char> l; 
+        char tmp;
+        while(linestream >> tmp){
+            l.push_back(tmp);
+        }
+        board.push_back(l);
+    }
+    time_t t1 = clock();
+    s.solve(board);
+    time_t t2 = clock();
+    //int res2 = s.candy(input);
+    //time_t t3 = clock();
+    //cout << "res1:" << res1 << endl;
+    cout << "time1:" << t2 - t1 << endl;
+    //cout << "res2:" << res2 << endl;
+    //cout << "time1:" << t3 - t2 << endl;
+}
+
