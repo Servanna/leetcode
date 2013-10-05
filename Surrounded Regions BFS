@@ -26,7 +26,7 @@ public:
         //unordered_set<string> visted;
         queue<pair<int, int> > q;
         pair<int, int> w;
-        q.push(pair<int, int>(i,j));
+        q.push(pair<int, int>(w.first,w.second));
         while(!q.empty()){
             w = q.front();
             q.pop();
