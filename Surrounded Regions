@@ -6,10 +6,12 @@ public:
         vector<vector<bool> > flag(board.size(), vector<bool>(board[0].size(), false));
         for(int i = 0; i < board.size(); i++){
             for(int j = 0; j < board[0].size(); j++){
-                bool c = true;
-                check(i, j, board, flag, c);
-                if(c){
-                    print(i, j, board);
+                if(flag[i][j] == false){
+                    bool c = true;
+                    check(i, j, board, flag, c);
+                    if(c){
+                        print(i, j, board);
+                    }
                 }
             }
         }
