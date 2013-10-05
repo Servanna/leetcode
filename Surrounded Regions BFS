@@ -1,0 +1,58 @@
+class Solution {
+public:
+    void solve(vector<vector<char> > &board) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        if(board.size() <= 2 || board[0].size() <= 2) return;
+        for(int i = 0; i < board.size(); i++){
+            //handle left boarder; 
+            if(board[i][0] == 'O') bfs(i, 0, board);
+        }
+        for(int i = 0; i < board.size(); i++){
+            //handle right boarder;    
+            if(board[i][board[0].size()-1] == 'O') bfs(i, board[0].size()-1, board);
+        }
+        for(int j = 0; j < board[0].size(); j++){
+            //handle up boarder
+            if(board[0][j] == 'O') bfs(0, j, board);
+        }
+        for(int j = 0; j < board[0].size(); j++){
+            //handle down boarder
+            if(board[board.size()-1][j] == 'O') bfs(board.size()-1, j, board);
+        }
+        set(board);
+    }
+    
+    void bfs(int i, int j, vector<vector<char> > & board){
+        //unordered_set<string> visted;
+        queue<pair<int, int> > q;
+        pair<int, int> w;
+        q.push(pair<int, int>(i,j));
+        while(!q.empty()){
+            w = q.front();
+            q.pop();
+            board[w.first][w.second] = 'V';
+            if(w.first+1 <= board.size() - 1 && board[w.first+1][w.second] == 'O'){
+                q.push(pair<int, int>(w.first+1, w.second));
+            }
+            if(w.first-1 >= 0 && board[w.first-1][w.second] == 'O'){
+                q.push(pair<int, int>(w.first-1, w.second));
+            }
+            if(w.second+1 <= board[0].size() - 1 && board[w.first][w.second+1] == 'O'){
+                q.push(pair<int, int>(w.first, w.second+1));
+            }
+            if(w.second-1 >= 0 && board[w.first][w.second-1] == 'O'){
+                q.push(pair<int, int>(w.first, w.second-1));
+            }
+        }
+    }
+    
+    void set(vector<vector<char> > & board){
+        for(int i = 0; i < board.size(); i++){
+            for(int j = 0; j < board[0].size(); j++){
+                if(board[i][j] == 'V') board[i][j] = 'O';
+                else if(board[i][j] == 'O') board[i][j] = 'X';
+            }
+        }
+    }
+    
+};
