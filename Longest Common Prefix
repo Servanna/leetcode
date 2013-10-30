@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string> &strs) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        string ret = "";
+        if(strs.size() == 0) return ret;
+        if(strs[0].size() == 0) return ret;
+        int i = 0;
+        bool stop = false;
+        while(true){
+            if(strs[0].size() == i)
+                break;
+            char c = strs[0][i];
+            for(int j = 0; j < strs.size(); j++){
+                if(strs[j].size() == i || strs[j][i] != c) {
+                    stop = true;
+                    break;
+                }
+            }
+            if(stop)
+                break;
+            ret += c;
+            i++;
+        }
+        return ret;
+    }
+};
