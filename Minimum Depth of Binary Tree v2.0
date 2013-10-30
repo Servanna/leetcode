@@ -21,6 +21,5 @@ public:
         }
         if(root->left) return 1 + minDepth(root->left);
         if(root->right) return 1 + minDepth(root->right);
-        
     }
 };
