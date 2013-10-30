@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxArea(vector<int> &height) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        int ret = 0;
+        int n = height.size();
+        int i = 0, j = n - 1;
+        while(i < j){
+            ret = max(ret, (j-i)*min(height[i], height[j]));
+            if(height[i] <= height[j]) i++;
+            else j--;
+        }
+        return ret;
+    }
+};
