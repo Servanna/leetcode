@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        int n = s.size();
+        if(n == 0) return 0;
+        int l = 0;
+        int tmp = 0;
+        int i = 0;
+        int max = 0;
+        int mask[26];
+        for(int k = 0; k < 26; k++){
+            mask[k] = -1;
+        }
+        while(true){
+            cout << "l:" << l << " i:" << i <<endl;
+            if(l == n){
+                break;
+            }
+            i = l;
+            while(true){
+                if(mask[s[i]-'a'] != -1){
+                    tmp = mask[s[i]-'a'];
+                    break;
+                }else{
+                    mask[s[i]-'a'] = i;
+                    i++;
+                }
+            }
+            if(i - l > max){
+                max = i - l;
+            }
+            for(int k = 0; k < 26; k++){
+                mask[k] = -1;
+            }
+            l = tmp + 1;
+            if(i == n){
+             break;
+            }
+        }
+        return max;
+    }
+};
