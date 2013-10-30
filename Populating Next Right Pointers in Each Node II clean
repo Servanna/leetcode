@@ -1,0 +1,42 @@
+/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeLinkNode* findNext(TreeLinkNode* parentNext){
+        while(parentNext){
+            if(parentNext->left){
+               return parentNext->left;
+            }else if(parentNext->right){
+                return parentNext->right;
+            }else{
+                parentNext = parentNext->next;
+            }
+        }
+        return NULL;
+    }
+    void connect(TreeLinkNode *root) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        if(!root) return;
+        if(root->left){
+            //try to find the neibor
+            if(root->right){
+                root->left->next = root->right;
+            }else{
+                root->left->next = findNext(root->next);
+            }
+        }
+        if(root->right){
+            root->right->next = findNext(root->next);
+            
+        }
+        connect(root->right);
+        connect(root->left);
+    }
+};
