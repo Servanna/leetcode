@@ -9,20 +9,13 @@
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        if(root == NULL){
-            return;
-        }
-        if(root->left != NULL){
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        if(!root) return;
+        if(root->left){
             root->left->next = root->right;
-        }
-        if(root->right != NULL){
-            if(root->next != NULL){
+            if(root->next)
                 root->right->next = root->next->left;
-            }else{
-                root->right->next = NULL;
-            }
         }
         connect(root->left);
         connect(root->right);
