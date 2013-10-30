@@ -1,0 +1,83 @@
+include <iostream>
+#include <fstream>
+#include <tr1/unordered_map>
+#include <tr1/unordered_set>
+#include <map>
+#include <stdlib.h>
+#include <stdio.h>
+#include <cstdio>
+#include <time.h>
+#include <string>
+#include <set>
+#include <vector>
+#include <queue>
+#include <sstream>
+#include <iomanip>
+#define BUFFER_SIZE 1024
+using namespace std;
+
+ struct ListNode {
+     int val;
+     ListNode *next;
+     ListNode(int x) : val(x), next(NULL) {}
+ };
+
+class Solution {
+public:
+    ListNode* reverse(ListNode* head, ListNode* next) {
+        if(!head || !next) return head;
+        ListNode* nn = next->next;
+        next->next = head;
+        return reverse(next, nn);
+    }
+
+    ListNode* reverse(ListNode* head){
+        if(!head) return NULL;
+        ListNode* cur = head;
+        ListNode* n = head->next;
+        // cur n nn; every time switch cur and n; then iterative by cur = n; n = nn; similar to recursive version
+        while(cur && n){
+            ListNode* nn = n->next;
+            n->next = cur;
+
+            cur = n;
+            n = nn;
+        }
+        return cur;
+    }
+};
+void print(ListNode* h){
+    while(h){
+        cout << h->val << "->" << endl;
+        h = h->next;
+    }
+}
+
+int main(int argc, char *argv[]) {
+    ifstream in;
+    in.open(argv[1]);
+    Solution s;
+    string line;
+    ListNode *header = new ListNode(-1);
+    ListNode *prev = header;
+    while(getline(in, line, '\r')){
+        std::stringstream  linestream(line);
+        int tmp;
+        while(linestream >> tmp){
+            ListNode* cur = new ListNode(tmp);
+            prev->next = cur;
+            prev = cur;
+        }
+    }
+    prev->next = NULL;
+    time_t t1 = clock();
+    print(header);
+    //ListNode * r = s.reverse(header->next, header->next->next);
+    ListNode * r = s.reverse(header->next);
+    // keep original head and set it's next to NULL
+    header->next->next = NULL;
+    print(r);
+    //int max = s.lengthOfLongestSubstring(input);
+    time_t t2 = clock();
+    cout << "time:" << t2 - t1 << endl;
+}
