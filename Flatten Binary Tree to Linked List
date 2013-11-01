@@ -1,0 +1,35 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* preOrder(TreeNode* node){
+        if(!node) return NULL;
+        if(!node->left && !node->right) return node;
+        if(node->left && node->right){
+            TreeNode* right = node->right;
+            node->right = node->left;
+            node->left = NULL;
+            TreeNode* tmp = preOrder(node->right);
+            tmp->right = right;
+            return preOrder(right);
+        }
+        if(node->left){
+            node->right = node->left;
+            node->left = NULL;
+            return preOrder(node->right);
+        }
+        return preOrder(node->right);
+    }
+    void flatten(TreeNode *root) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        preOrder(root);
+    }
+};
