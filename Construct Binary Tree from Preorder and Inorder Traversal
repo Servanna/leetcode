@@ -1,0 +1,38 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int getIndex(int key, vector<int> &list){
+        for(int i = 0; i < list.size(); i++){
+            if(key == list[i])
+                return i;
+        }
+        return -1;
+    }
+    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        TreeNode* root = buildTree(preorder, 0, inorder, 0, preorder.size());
+        return root;
+        
+    }
+    TreeNode *buildTree(vector<int> &preorder, int i1, vector<int> &inorder, int i2, int length){
+        if(length == 0)
+            return NULL;
+        int root = preorder[i1];
+        TreeNode *r = new TreeNode(root);
+        int index = getIndex(root, inorder);
+        int length1 = index - i2;
+        int length2 = length - 1 - length1;
+        r->left = buildTree(preorder, i1 + 1, inorder, i2, length1);
+        r->right = buildTree(preorder, i1 + 1 + length1, inorder, index + 1, length2);
+        return r;
+    }
+};
