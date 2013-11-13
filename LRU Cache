@@ -1,0 +1,64 @@
+class LRUCache{
+    struct node{
+        struct node * pre;
+        struct node * next;
+        int key;
+        int val;
+    };
+private:
+    unordered_map<int, struct node *> mymap;
+    struct node header;
+    struct node tail;
+    int cap;
+public:
+    LRUCache(int capacity) {
+        header.next = &tail;
+        tail.pre = &header;
+        cap = capacity;
+    }
+    
+    int get(int key) {
+        if(mymap.count(key) > 0){
+            struct node* n = mymap[key];
+            n->pre->next = n->next;
+            n->next->pre = n->pre;
+            attach(n);
+            return n->val;
+        }else{
+            return -1;
+        }
+    }
+    
+    void attach(struct node* n){
+        header.next->pre = n;
+        n->next = header.next;
+        header.next = n;
+        n->pre = &header;
+    }
+    
+    void detach(){
+        struct node* n = tail.pre;
+        tail.pre = n->pre;
+        n->pre->next = &tail;
+        mymap.erase(n->key);
+        delete n;
+    }
+    
+    void set(int key, int value) {
+        if(mymap.count(key) > 0){
+            struct node* n = mymap[key];
+            n->pre->next = n->next;
+            n->next->pre = n->pre;
+            n->val = value;
+            attach(n);
+        }else{
+            if(mymap.size() == cap)
+                detach();
+            struct node* n = new struct node;
+            n->key = key;
+            n->val = value;
+            attach(n);
+            mymap.insert(pair<int, struct node*>(key, n));
+        }
+    }
+};
