@@ -21,6 +21,7 @@ public:
                     q.push(root->right);
                 }
                 q.push(root);
+                root = root->left;
             }
             root = q.top();
             q.pop();
@@ -30,6 +31,7 @@ public:
                 q.push(root);
             }else{
                 ret.push_back(root->val);
+                root = NULL;
             }
         }while(q.size() > 0);
         return ret;
