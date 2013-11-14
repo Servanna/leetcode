@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int> > subsets(vector<int> &S) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        vector<vector<int> > ret;
+        if(S.size() <= 0)
+            return ret;
+        sort(S.begin(), S.end());
+        int tmp = 1 << S.size();
+        for(int i = 0; i < tmp; i++){
+            vector<int> t;
+            for(int j = 0 ; j < S.size(); j++){
+                if(1<<j & i){
+                    t.push_back(S[j]);
+                }
+            }
+            ret.push_back(t);
+        }
+        return ret;
+    }
+};
