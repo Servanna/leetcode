@@ -13,6 +13,8 @@ public:
     }
 };
 
+
+// do a little optimization
 class Solution {
 private:
     set<int> lens; 
