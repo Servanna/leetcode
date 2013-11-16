@@ -12,3 +12,32 @@ public:
         return false;
     }
 };
+
+class Solution {
+private:
+    set<int> lens; 
+public:
+    void initLens(unordered_set<string> &dict){
+        for(string tmp : dict){
+            if(lens.count(tmp.size()) == 0)
+                lens.insert(tmp.size());
+        }
+    }
+    bool wordBreak(string s, unordered_set<string> &dict) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        initLens(dict);
+        return wordBreak1(s, dict);
+    }
+    bool wordBreak1(string s, unordered_set<string> &dict){
+        for(set<int>::iterator iter = lens.begin(); iter != lens.end(); iter++){
+            if(*iter > s.size()) break;
+            string tmp = s.substr(0, *iter);
+            if(dict.count(tmp) > 0 && wordBreak1(s.substr(*iter), dict)){
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
