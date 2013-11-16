@@ -1,0 +1,30 @@
+class Solution {
+private:
+    bool **table;
+public:
+    bool search(int start, int size){
+        for(int i = start; i < size; i++){
+            if(table[start][i]){
+                if(search(i+1, size)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    bool wordBreak(string s, unordered_set<string> &dict) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        table = new bool*[s.size()];
+        for(int i = 0; i < s.size(); i++){
+            table[i] = new bool[s.size()];
+        }
+        for(int i = 0; i < s.size(); i++){
+            for(int j = 1 ; j <= s.size()-i; j++ ){
+                string sub = s.substr(i, j);
+                table[i][i + j - 1] = dict.count(sub) > 0 ? true : false;
+            }
+        }
+        return search(0, s.size());
+    }
+};
