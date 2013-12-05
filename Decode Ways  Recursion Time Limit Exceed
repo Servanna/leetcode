@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int numDecodings(string s) {
+        int count = 0;
+        helper(s, 0, 1, count);
+        helper(s, 0, 2, count);
+        return count;
+    }
+    void helper(string s, int start, int len, int &count){
+        if(start + len > s.size())
+            return;
+        int tmp = 0;
+        for(int i = 0; i < len; i++){
+            tmp = tmp + ( s[start + i] - '0' ) * ( i == 0 ? 1 : 10);
+        }
+        if(tmp > 26)
+            return;
+        if(start + len == s.size()){
+            count++;
+            return;
+        }
+        helper(s, start + len, 1, count);
+        helper(s, start + len, 2, count);
+    }
+};
